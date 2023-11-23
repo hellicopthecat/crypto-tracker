@@ -11,9 +11,11 @@
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.17",
     "apexcharts": "^3.44.0",
+    "gh-pages": "^6.1.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
@@ -26,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "homepage": "https://hellicopthecat.github.io/crypto-tracker",
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.9"
   }
 }

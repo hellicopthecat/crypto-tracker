@@ -3,7 +3,7 @@ import styled, {keyframes} from "styled-components";
 import {fetchCoins} from "../api/api";
 import {Link} from "react-router-dom";
 import Badge from "../components/Badge";
-
+import {Helmet} from "react-helmet";
 interface ICoins {
   id: string;
   is_active: boolean;
@@ -85,6 +85,10 @@ export default function Home() {
 
   return (
     <Container>
+      <Helmet>
+        <title>Home | Crypto Tracker</title>
+        <meta name="description" content="Home | Crypto Tracker" />
+      </Helmet>
       {isLoading ? (
         <Loading>Loading Coin Data</Loading>
       ) : (

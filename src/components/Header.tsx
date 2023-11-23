@@ -38,7 +38,7 @@ export default function Header() {
   return (
     <HeaderCont>
       <Link to="/">
-        <HeadTitle>COIN TRACKER</HeadTitle>
+        <HeadTitle>CRYPTO TRACKER</HeadTitle>
       </Link>
       <ThemeBtnCont onClick={toggleTheme}>
         <ThemeBtn></ThemeBtn>

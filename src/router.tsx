@@ -6,30 +6,33 @@ import ErrorPage from "./views/ErrorPage";
 import Chart from "./components/Chart";
 import Price from "./components/Price";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "",
-        element: <Home />,
-      },
-      {
-        path: ":coinID",
-        element: <Coin />,
-        children: [
-          {path: "price", element: <Price />},
-          {path: "chart", element: <Chart />},
-        ],
-      },
-      {
-        path: "*",
-        element: <ErrorPage />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: ":coinID",
+          element: <Coin />,
+          children: [
+            {path: "price", element: <Price />},
+            {path: "chart", element: <Chart />},
+          ],
+        },
+        {
+          path: "*",
+          element: <ErrorPage />,
+        },
+      ],
+    },
+  ],
+  {basename: process.env.PUBLIC_URL}
+);
 
 export default router;

@@ -4,6 +4,7 @@ import {coinData} from "../api/api";
 import styled from "styled-components";
 import Badge from "../components/Badge";
 import BackBtn from "../components/BackBtn";
+import {Helmet} from "react-helmet";
 
 interface IcoinLinks {
   website: string[];
@@ -117,6 +118,10 @@ export default function Coin() {
   );
   return (
     <>
+      <Helmet>
+        <title>{`${aboutCoin?.name}`} | Crypto Tracker</title>
+        <meta name="description" content="Home | Crypto Tracker" />
+      </Helmet>
       {aboutCoinLoading ? (
         <>
           <BackBtn dest="/" />
