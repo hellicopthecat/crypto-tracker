@@ -20,6 +20,8 @@ export const priceData = async (id: string) => {
 };
 
 export const chartData = async (id: string) => {
+  // const endDate = Math.floor(Date.now() / 1000);
+  // const startDate = endDate - 60 * 60 * 24 * 7;
   return fetch(`https://ohlcv-api.nomadcoders.workers.dev?coinId=${id}`)
     .then((res) => res.json())
     .catch((e) => console.log(e));
