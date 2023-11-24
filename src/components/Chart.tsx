@@ -27,7 +27,7 @@ const Chartcont = styled.div``;
 export default function Chart() {
   const coinID = useOutletContext();
   const darkMode = useRecoilValue(darkModeAtom);
-  const {data, isLoading, isError, error} = useQuery<IChartModel[]>(
+  const {data, isLoading} = useQuery<IChartModel[]>(
     ["chartData", coinID],
     async () => {
       const data = await chartData(String(coinID));
@@ -45,62 +45,58 @@ export default function Chart() {
         </IsLoading>
       ) : (
         <Chartcont>
-          {error === true ? (
-            <ChartTitle>Sorry...Chart data does not exist. </ChartTitle>
-          ) : (
-            <ApexCharts
-              type="candlestick"
-              width={1000}
-              height={500}
-              series={[
-                {
-                  data:
-                    data?.map((price) => ({
-                      x: new Date(price.time_close).toLocaleString("en-US", {
-                        timeZone: "UTC",
-                      }),
-                      y: [price.open, price.high, price.low, price.close],
-                    })) || [],
-                },
-              ]}
-              options={{
-                title: {
-                  text: `${String(coinID).toUpperCase()} CandleStick Chart`,
-                },
-                chart: {
-                  type: "candlestick",
-                  background: "transparent",
-                },
-                theme: {mode: darkModeAtom ? "dark" : "light"},
-                xaxis: {
-                  type: "datetime",
-                  labels: {
-                    style: {
-                      colors: darkMode ? xAxisColors : yAxisColor,
-                    },
+          <ApexCharts
+            type="candlestick"
+            width={1000}
+            height={500}
+            series={[
+              {
+                data:
+                  data?.map((price) => ({
+                    x: new Date(price.time_close).toLocaleString("en-US", {
+                      timeZone: "UTC",
+                    }),
+                    y: [price.open, price.high, price.low, price.close],
+                  })) || [],
+              },
+            ]}
+            options={{
+              title: {
+                text: `${String(coinID).toUpperCase()} CandleStick Chart`,
+              },
+              chart: {
+                type: "candlestick",
+                background: "transparent",
+              },
+              theme: {mode: darkModeAtom ? "dark" : "light"},
+              xaxis: {
+                type: "datetime",
+                labels: {
+                  style: {
+                    colors: darkMode ? xAxisColors : yAxisColor,
                   },
                 },
-                yaxis: {
-                  labels: {
-                    style: {
-                      colors: darkMode ? xAxisColors : yAxisColor,
-                    },
+              },
+              yaxis: {
+                labels: {
+                  style: {
+                    colors: darkMode ? xAxisColors : yAxisColor,
                   },
                 },
-                plotOptions: {
-                  candlestick: {
-                    colors: {
-                      upward: "#19da8d",
-                      downward: "#fc5d01",
-                    },
-                    wick: {
-                      useFillColor: true,
-                    },
+              },
+              plotOptions: {
+                candlestick: {
+                  colors: {
+                    upward: "#19da8d",
+                    downward: "#fc5d01",
+                  },
+                  wick: {
+                    useFillColor: true,
                   },
                 },
-              }}
-            />
-          )}
+              },
+            }}
+          />
         </Chartcont>
       )}
     </Container>
