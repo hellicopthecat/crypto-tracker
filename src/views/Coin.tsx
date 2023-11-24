@@ -177,9 +177,11 @@ export default function Coin() {
                   Show Price
                 </Link>
               </ActiveBtn>
-              <ActiveBtn>
-                <Link to="chart">Show Chart</Link>
-              </ActiveBtn>
+              {aboutCoin?.description !== "" && (
+                <ActiveBtn>
+                  <Link to="chart">Show Chart</Link>
+                </ActiveBtn>
+              )}
             </BtnSelect>
             <Outlet context={coinID} />
           </Cointainer>
